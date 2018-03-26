@@ -1,14 +1,33 @@
 group 'login.example'
 version '1.0.0-SNAPSHOT'
 
-apply plugin: 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
 
-sourceCompatibility = 1.5
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
+mainClassName = 'login.app.App'
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    //spark
+    compile "com.sparkjava:spark-core:2.7.2"
+    compile 'com.google.code.gson:gson:2.7'
+
+    //logs
+    compile('ch.qos.logback:logback-classic:1.1.7')
+    compile group: 'org.codehaus.janino', name: 'janino', version: '3.0.6'
+    compile group: 'org.logback-extensions', name: 'logback-ext-loggly', version: '0.1.4'
+
 }
